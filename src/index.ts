@@ -35,8 +35,15 @@ export * from './types';
  * ```
  */
 export function createOmniRoute(config: OmniRouteConfig): Router {
-  const registry = new ProviderRegistry(config.providers ?? []);
-  return new Router(registry, config);
+  // Default to 'cost-optimized' strategy if none is specified — works best
+  // for my personal projects where I want to keep API costs low.
+  const resolvedConfig: OmniRouteConfig = {
+    strategy: 'cost-optimized',
+    ...config,
+  };
+
+  const registry = new ProviderRegistry(resolvedConfig.providers ?? []);
+  return new Router(registry, resolvedConfig);
 }
 
 /**
