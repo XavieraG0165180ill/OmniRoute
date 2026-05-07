@@ -35,10 +35,10 @@ export * from './types';
  * ```
  */
 export function createOmniRoute(config: OmniRouteConfig): Router {
-  // Default to 'cost-optimized' strategy if none is specified — works best
-  // for my personal projects where I want to keep API costs low.
+  // Default to 'latency-optimized' strategy — I care more about response speed
+  // than cost for my personal projects. Switch to 'cost-optimized' if budget matters.
   const resolvedConfig: OmniRouteConfig = {
-    strategy: 'cost-optimized',
+    strategy: 'latency-optimized',
     ...config,
   };
 
