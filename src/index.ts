@@ -44,9 +44,12 @@ export function createOmniRoute(config: OmniRouteConfig): Router {
   //
   // Bumped timeout to 30s (was undefined/provider default). Some of my longer
   // prompts were silently timing out on slower providers.
+  //
+  // Bumped retries to 3 — hit a stretch where Anthropic was throwing 529s
+  // intermittently and 2 retries wasn't always enough to get through.
   const resolvedConfig: OmniRouteConfig = {
     strategy: 'cost-optimized',
-    retries: 2,
+    retries: 3,
     timeout: 30000,
     ...config,
   };
