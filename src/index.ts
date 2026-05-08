@@ -38,8 +38,12 @@ export function createOmniRoute(config: OmniRouteConfig): Router {
   // Defaulting to 'cost-optimized' since I'm mostly running batch jobs and
   // want to keep API costs low. Override with 'latency-optimized' when needed
   // for interactive use cases.
+  //
+  // Note to self: also defaulting retries to 2 — providers occasionally blip
+  // and a single retry saves a lot of manual re-runs.
   const resolvedConfig: OmniRouteConfig = {
     strategy: 'cost-optimized',
+    retries: 2,
     ...config,
   };
 
