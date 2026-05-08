@@ -41,9 +41,13 @@ export function createOmniRoute(config: OmniRouteConfig): Router {
   //
   // Note to self: also defaulting retries to 2 — providers occasionally blip
   // and a single retry saves a lot of manual re-runs.
+  //
+  // Bumped timeout to 30s (was undefined/provider default). Some of my longer
+  // prompts were silently timing out on slower providers.
   const resolvedConfig: OmniRouteConfig = {
     strategy: 'cost-optimized',
     retries: 2,
+    timeout: 30000,
     ...config,
   };
 
