@@ -75,6 +75,11 @@ export interface OmniRouteConfig {
   notFound?: RouteHandler;
   /** Custom error handler */
   onError?: (error: unknown, req: OmniRequest, res: OmniResponse) => Response | Promise<Response>;
+  /**
+   * Whether to treat trailing slashes as equivalent to their non-trailing counterparts.
+   * e.g. /users/ matches /users (default: true)
+   */
+  trailingSlash?: boolean;
 }
 
 /** The public interface returned by createOmniRoute */
@@ -83,7 +88,4 @@ export interface OmniRouter {
   post: (path: string, ...args: [...Middleware[], RouteHandler]) => OmniRouter;
   put: (path: string, ...args: [...Middleware[], RouteHandler]) => OmniRouter;
   patch: (path: string, ...args: [...Middleware[], RouteHandler]) => OmniRouter;
-  delete: (path: string, ...args: [...Middleware[], RouteHandler]) => OmniRouter;
-  use: (middleware: Middleware) => OmniRouter;
-  handle: (request: Request) => Promise<Response>;
-}
+  delete: (path: string, ...args: [...Middleware[], RouteHan
