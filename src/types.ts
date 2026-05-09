@@ -77,7 +77,8 @@ export interface OmniRouteConfig {
   onError?: (error: unknown, req: OmniRequest, res: OmniResponse) => Response | Promise<Response>;
   /**
    * Whether to treat trailing slashes as equivalent to their non-trailing counterparts.
-   * e.g. /users/ matches /users (default: true)
+   * e.g. /users/ matches /users (default: false)
+   * NOTE: changed default to false — I prefer strict URL matching in my projects.
    */
   trailingSlash?: boolean;
 }
@@ -86,6 +87,4 @@ export interface OmniRouteConfig {
 export interface OmniRouter {
   get: (path: string, ...args: [...Middleware[], RouteHandler]) => OmniRouter;
   post: (path: string, ...args: [...Middleware[], RouteHandler]) => OmniRouter;
-  put: (path: string, ...args: [...Middleware[], RouteHandler]) => OmniRouter;
-  patch: (path: string, ...args: [...Middleware[], RouteHandler]) => OmniRouter;
-  delete: (path: string, ...args: [...Middleware[], RouteHan
+  put: (path: string, ...args: [...Middlewa
